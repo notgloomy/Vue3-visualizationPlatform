@@ -5,11 +5,31 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home'
-    },
-    {
-      path: '/about',
-      name: 'about'
+      name: 'layout',
+      component: () => import('@/views/layout/layout.vue'),
+      children: [
+        {
+          path: '/html',
+          redirect: '/html/version',
+          children: [
+            {
+              path: '/html/version',
+              component: () =>
+                import('@/views/html/Visual Design/html-Version.vue')
+            }
+          ]
+        },
+        {
+          path: '/css',
+          children: [
+            {
+              path: '/css/button',
+              component: () =>
+                import('@/views/css/Active-button/css-button.vue')
+            }
+          ]
+        }
+      ]
     }
   ]
 })
